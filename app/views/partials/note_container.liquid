@@ -1,0 +1,16 @@
+
+{%liquid
+    graphql result = "content/read" | fetch: "records" | fetch: "results"
+%}
+
+
+<section class="w-full max-w-[1000px] flex flex-wrap justify-center mt-10 gap-4 mx-auto">
+
+    {% for e in result %}
+        <div class="w-[300px] h-[300px] bg-yellow-100 flex flex-col gap-2 p-6 overflow-y-auto shadow-md hover:shadow-xl hover:-rotate-3">
+            <h1 class="text-xl font-bold">{{ e.title }}</h1>
+            <p class="font-light">{{ e.description }}</p>
+        </div>
+    {% endfor %}
+
+</section>

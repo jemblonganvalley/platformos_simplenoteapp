@@ -31,6 +31,10 @@ metadata:
       </form>
     </div>
   </header>
+  
+  {% include "note_container" %}
+
+
 </div>
 <!-- END MAIN CONTENT -->
 
@@ -43,7 +47,7 @@ metadata:
   <form class="w-[300px]" action="/api/content/create" method="post" x-show="open === true">
     <input
       type="text"
-      class="h-12 px-4 border-none outline-none w-full bg-yellow-200"
+      class="h-12 px-4 border-none outline-none w-full bg-yellow-100"
       placeholder="write title here.."
       name="title"
       id="title"
@@ -52,7 +56,7 @@ metadata:
     <textarea
       name="description"
       id="description"
-      class="w-full min-h-[300px] p-4 bg-yellow-200 text-gray-500 outline-none"
+      class="w-full min-h-[300px] p-4 bg-yellow-100 text-gray-500 outline-none"
       placeholder="write note here"
       required
     ></textarea>

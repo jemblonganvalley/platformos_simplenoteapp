@@ -1,17 +1,16 @@
-query read{
-    records(
-        per_page: 10
-        filter: {
-            table: {value: "content"}
-
-        }
-        sort: { updated_at: { order: DESC } }
-    ) {
-        results(
-            id
-            title: property(name: "title")
-            description: property(name: "description")
-            created_at
-        )
+query index {
+  records(
+    filter: {
+      table: { value: "content" }
+      properties: { name: "title", exists: true }
     }
+    sort: { updated_at: { order: DESC } }
+  ) {
+    results {
+      id
+      title: property(name: "title")
+      description: property(name: "description")
+      created_at
+    }
+  }
 }
