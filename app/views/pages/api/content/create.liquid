@@ -1,0 +1,26 @@
+---
+    method: post
+---
+
+{%liquid 
+    assign title = context.params.title 
+    assign description = context.params.description 
+    graphql result = "content/create", title : title, description : description 
+    assign res = result | fetch: "record_create"
+%}
+
+
+{% if res.id %}
+    <script>
+        alert("Success add data")
+        window.location.href = "/"
+    </script>
+{% else %}
+    <script>
+        alert("{{result.errors.message}}")
+        // window.location.href = "/"
+    </script>
+
+    {{result.errors}}
+{% endif %}
+

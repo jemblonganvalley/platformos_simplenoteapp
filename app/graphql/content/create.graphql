@@ -1,0 +1,13 @@
+mutation create($title: String!, $description: Text!) {
+  record_create(
+    record: {
+      table: "content"
+      properties: [
+        { name: "title", value: $title }
+        { name: "description", value: $description }
+      ]
+    }
+  ) {
+    id
+  }
+}

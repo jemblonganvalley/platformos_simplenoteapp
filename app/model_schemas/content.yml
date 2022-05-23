@@ -1,0 +1,6 @@
+name: "content"
+properties:
+  - name: "title"
+    type: "string"
+  - name: "description"
+    type: "text"
