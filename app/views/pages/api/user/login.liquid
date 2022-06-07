@@ -1,0 +1,25 @@
+---
+    method: post
+    format: json
+---
+
+{%liquid
+    assign ctx = context.params
+    graphql result = "user/login", email: ctx.email, password: ctx.password
+    assign result_data = result | fetch: "user_session_create"
+    %}
+
+{% if result_data.id %}
+    {
+        "success" : true,
+        "token" : "{{result_data.jwt_token}}"
+    }
+
+{% else %}
+
+    {
+        "success" : "false",
+        "error" : {{result.errors[0]}}
+    }
+
+{% endif %}

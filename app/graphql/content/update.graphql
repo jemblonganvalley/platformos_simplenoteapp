@@ -1,0 +1,18 @@
+mutation update(
+    $id: ID!,
+    $title: String,
+    $description : String
+    
+    ){
+    record_update(
+        id: $id
+        record: {
+            properties: [
+                {name: "title" , value: $title},
+                {name: "description" , value: $description},
+            ]
+        }
+    ){
+        id
+    }
+}

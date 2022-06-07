@@ -1,0 +1,22 @@
+---
+    method: put
+    format: json
+---
+
+{% liquid 
+    assign ctx = context.params
+    graphql result = 'content/update', id: ctx.id, title: ctx.title, description: ctx.description
+    assign result_data = result | fetch: "record_update"
+    %}
+
+
+{% if result_data.id %}
+    {
+        "success" : true,
+    }
+{% else %}
+    {
+        "success" : false,
+        "error" : {{ result.errors }}
+    }
+{% endif %}

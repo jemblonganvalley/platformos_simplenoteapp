@@ -1,0 +1,25 @@
+---
+    method: post
+    format: json
+---
+
+{%liquid
+    assign ctx = context.params
+    graphql result = "user/create", email: ctx.email, password: ctx.password
+    assign result_data = result | fetch: "record_create"
+    %}
+
+{% if result_data.id %}
+    {
+        "success" : true,
+        "msg" : "registration success!"
+    }
+
+{% else %}
+
+    {
+        "success" : "false",
+        "error" : {{result.errors[0]}}
+    }
+
+{% endif %}

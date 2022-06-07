@@ -1,4 +1,4 @@
-mutation create($title: String!, $description: Text!) {
+mutation create($title: String!, $description: String!) {
   record_create(
     record: {
       table: "content"
@@ -8,6 +8,8 @@ mutation create($title: String!, $description: Text!) {
       ]
     }
   ) {
-    id
+    id,
+    title: property(name: "title"),
+    description: property(name: "description")
   }
 }

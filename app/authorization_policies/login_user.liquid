@@ -1,0 +1,18 @@
+---
+    name: login_user
+    redirect_to: /api/unauthorized
+---
+
+{%liquid
+    assign token = context.headers["HTTP_TOKEN"]
+    graphql result = 'user/verify', token: token
+    assign result_data = result | fetch: "jwt_decode_and_set_session"
+%}
+
+{% if result_data.id %}
+    true
+{% else %}
+    false
+{% endif %}
+
+

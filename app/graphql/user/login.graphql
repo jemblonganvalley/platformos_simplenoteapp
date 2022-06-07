@@ -1,0 +1,10 @@
+mutation user_login($email: String!, $password: String!){
+    user_session_create(
+        email: $email,
+        password: $password
+    ){
+        id,
+        email,
+        jwt_token
+    }
+}

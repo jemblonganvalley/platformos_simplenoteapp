@@ -1,0 +1,17 @@
+---
+    method: post
+    format: json
+---
+
+{%liquid
+    assign id = context.params.id
+    graphql result = 'content/read', id: id
+    assign result_data = result | fetch: "records" | fetch: "results"
+%}
+
+
+{
+    "status" : 200,
+    "data" : {{ result_data }}
+}
+

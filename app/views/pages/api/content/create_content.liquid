@@ -1,0 +1,27 @@
+---
+    method: post
+    format: json
+    authorization_policies:
+        - login_user
+---
+
+{%liquid 
+    assign title = context.params.title 
+    assign description = context.params.description 
+    graphql result = "content/create", title : title, description : description 
+    assign result_data = result | fetch: "record_create"
+%}
+
+{% if result_data.id %}
+    {
+        "success" : true,
+        "data" : {{ result_data }}
+    }
+
+    {% else %}
+
+    {
+        "success" : false,
+        "error" : {{ result.errors }}
+    }
+{% endif %}

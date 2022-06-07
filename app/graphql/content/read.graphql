@@ -1,8 +1,10 @@
-query index {
+query index($id: ID) {
   records(
+    per_page: 10
     filter: {
-      table: { value: "content" }
-      properties: { name: "title", exists: true }
+      id: {value: $id}
+      table: { value: "content" },
+    
     }
     sort: { updated_at: { order: DESC } }
   ) {

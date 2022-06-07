@@ -1,0 +1,26 @@
+---
+    method: delete
+    format: json
+    authorization_policies:
+        - login_user
+---
+
+{%liquid
+    assign id = context.params.id
+    graphql result = 'content/delete', id : id
+    assign result_data = result | fetch: "record_delete"
+%}
+
+{% if result_data.id %}
+    {
+        "success" : true
+    }
+
+    {% else %}
+
+    {
+        "success" : false,
+        "error" : {{ result.errors }}
+    }
+
+{% endif %}

@@ -1,0 +1,8 @@
+mutation user_verify($token: String!){
+    jwt_decode_and_set_session(
+        jwt_token: $token
+    ){
+        id,
+        email
+    }
+}
